@@ -42,7 +42,6 @@ namespace WindowsFormsApp3
 
             }
             else {
-                info.Text = null;
                 string exepath = Application.ExecutablePath;
                 string exedic = Path.GetDirectoryName(exepath);
                 SQLiteHelper war = new SQLiteHelper(exedic+"\\"+Config.SQLLITE_PATH);
@@ -141,8 +140,8 @@ namespace WindowsFormsApp3
                     marketData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                     marketData.RowHeadersVisible = false;
                     marketData.AllowUserToAddRows = false;
-                    marketData.RowsDefaultCellStyle.BackColor = Color.DeepSkyBlue;
-                    marketData.AlternatingRowsDefaultCellStyle.BackColor = Color.Gold;
+                    marketData.RowsDefaultCellStyle.BackColor = Color.Gold;
+                    marketData.AlternatingRowsDefaultCellStyle.BackColor = Color.DeepSkyBlue;
                     marketData.DataSource = table;
                     info.Text = "单击复制表格内容";
                 }
