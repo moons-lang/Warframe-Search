@@ -21,12 +21,20 @@ namespace WindowsFormsApp3
         public Form1()
         {
             InitializeComponent();
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.platform.SelectedIndex = 0;
             this.search.Text = "沙皇";
         }
 
         private void searchButton_Click(object sender, EventArgs e)
         {
+            info.Text = null;
+            office.Text = string.Empty;
+            officeDataGrid.DataSource = null;
+            market.Text = string.Empty;
+            marketData.DataSource = null;
             if (search.Text.Equals(""))
             {
                 info.Text = "请输入查询值";
@@ -163,8 +171,8 @@ namespace WindowsFormsApp3
                     officeDataGrid.DataSource = null;
                     //设置左上第一格
                     officeDataGrid.TopLeftHeaderCell.Value = search.Text;
-                    officeDataGrid.RowsDefaultCellStyle.BackColor = Color.DeepSkyBlue;
-                    officeDataGrid.AlternatingRowsDefaultCellStyle.BackColor = Color.Gold;
+                    officeDataGrid.RowsDefaultCellStyle.BackColor = Color.Gold;
+                    officeDataGrid.AlternatingRowsDefaultCellStyle.BackColor = Color.DeepSkyBlue;
                     officeDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                     officeDataGrid.RowHeadersVisible = false;
                     officeDataGrid.AllowUserToAddRows = false;

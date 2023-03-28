@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.search = new System.Windows.Forms.TextBox();
             this.searchButton = new System.Windows.Forms.Button();
             this.platform = new System.Windows.Forms.ComboBox();
@@ -170,6 +171,7 @@
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.search);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Warfram Search";
             ((System.ComponentModel.ISupportInitialize)(this.officeDataGrid)).EndInit();
