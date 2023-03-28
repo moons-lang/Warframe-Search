@@ -27,6 +27,7 @@ namespace WindowsFormsApp3
             this.platform.SelectedIndex = 0;
             this.point.Text = "输入想要查找的紫卡并点击搜索";
             this.search.Text = "沙皇";
+            this.sort.Text = "价格升序";
         }
 
         private void searchButton_Click(object sender, EventArgs e)
@@ -73,6 +74,14 @@ namespace WindowsFormsApp3
             WebHeaderCollection webHeader = new WebHeaderCollection();
             webHeader.Add("platform", platform.Text);
             Hashtable hashtable = new Hashtable();
+            switch (sort.Text) {
+                case "价格升序":
+                    hashtable.Add("sort_by", "price_asc");
+                    break;
+                case "价格降序":
+                    hashtable.Add("sort_by", "price_desc");
+                    break;
+            }
             hashtable.Add("weapon_url_name", CtoE.selEName(search.Text));
             string resp = HttpUitls.Get(HttpUitls.splicParam(url, hashtable), webHeader);
             if (resp != null)

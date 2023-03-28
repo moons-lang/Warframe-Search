@@ -41,6 +41,8 @@
             this.marketData = new System.Windows.Forms.DataGridView();
             this.clear = new System.Windows.Forms.Button();
             this.point = new System.Windows.Forms.Label();
+            this.sort = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.officeDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.marketData)).BeginInit();
             this.SuspendLayout();
@@ -113,7 +115,6 @@
             // officeDataGrid
             // 
             this.officeDataGrid.BackgroundColor = System.Drawing.SystemColors.Menu;
-            this.officeDataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.officeDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.officeDataGrid.Location = new System.Drawing.Point(73, 100);
             this.officeDataGrid.Name = "officeDataGrid";
@@ -125,7 +126,7 @@
             // 
             this.info.AutoSize = true;
             this.info.ForeColor = System.Drawing.Color.Red;
-            this.info.Location = new System.Drawing.Point(390, 56);
+            this.info.Location = new System.Drawing.Point(626, 76);
             this.info.Name = "info";
             this.info.Size = new System.Drawing.Size(0, 12);
             this.info.TabIndex = 8;
@@ -133,7 +134,6 @@
             // marketData
             // 
             this.marketData.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.marketData.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.marketData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.marketData.Location = new System.Drawing.Point(73, 211);
             this.marketData.Name = "marketData";
@@ -161,12 +161,34 @@
             this.point.Size = new System.Drawing.Size(0, 12);
             this.point.TabIndex = 12;
             // 
+            // sort
+            // 
+            this.sort.FormattingEnabled = true;
+            this.sort.Items.AddRange(new object[] {
+            "价格升序",
+            "价格降序"});
+            this.sort.Location = new System.Drawing.Point(468, 53);
+            this.sort.Name = "sort";
+            this.sort.Size = new System.Drawing.Size(91, 20);
+            this.sort.TabIndex = 13;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(409, 56);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "排序方式";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(984, 516);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.sort);
             this.Controls.Add(this.point);
             this.Controls.Add(this.clear);
             this.Controls.Add(this.marketData);
@@ -204,6 +226,8 @@
         private System.Windows.Forms.DataGridView marketData;
         private System.Windows.Forms.Button clear;
         private System.Windows.Forms.Label point;
+        private System.Windows.Forms.ComboBox sort;
+        private System.Windows.Forms.Label label2;
     }
 }
 
