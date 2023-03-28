@@ -27,7 +27,7 @@ namespace WindowsFormsApp3
             this.platform.SelectedIndex = 0;
             this.point.Text = "输入想要查找的紫卡并点击搜索";
             this.search.Text = "沙皇";
-            this.sort.Text = "价格升序";
+            this.sort.Text = "默认排序";
         }
 
         private void searchButton_Click(object sender, EventArgs e)
@@ -101,6 +101,7 @@ namespace WindowsFormsApp3
                 table.Columns.Add("洗点次数");
                 table.Columns.Add("起拍价");
                 table.Columns.Add("买断价");
+                table.Columns.Add("状态");
                 table.Columns.Add("卖家");
                 foreach (var auctions in tokens)
                 {
@@ -108,6 +109,7 @@ namespace WindowsFormsApp3
                     List<string> v = new List<string>(5);
                     IList<JToken> attributes = auctions["item"]["attributes"].Children().ToList();
                     string name = auctions["owner"]["ingame_name"].ToString();
+                    string status = auctions["owner"]["status"].ToString();
                     string polarity = auctions["item"]["polarity"].ToString();
                     string rank = auctions["item"]["mod_rank"].ToString();
                     string rero = auctions["item"]["re_rolls"].ToString();
@@ -140,6 +142,18 @@ namespace WindowsFormsApp3
                     v.Add(rero);
                     v.Add(start);
                     v.Add(end);
+                    if (status.Equals("offline"))
+                    {
+                        v.Add("离线");
+                    }
+                    else if ((status.Equals("ingame")))
+                    {
+                        v.Add("游戏中");
+                    }
+                    else 
+                    {
+                        v.Add("在线");
+                    }
                     v.Add("/w " + name + " Hi!");
                     table.Rows.Add(l.Cast<object>().ToArray());
                     table.Rows.Add(v.Cast<object>().ToArray());
@@ -268,5 +282,5 @@ namespace WindowsFormsApp3
             Clipboard.SetText(marketData.CurrentCell.Value.ToString());
             MessageBox.Show("复制成功","提示");
         }
+        }
     }
-}

@@ -167,6 +167,7 @@
             // 
             this.sort.FormattingEnabled = true;
             this.sort.Items.AddRange(new object[] {
+            "默认排序",
             "价格升序",
             "价格降序"});
             this.sort.Location = new System.Drawing.Point(468, 53);
