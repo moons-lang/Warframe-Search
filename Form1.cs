@@ -258,6 +258,7 @@ namespace WindowsFormsApp3
         private void marketData_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             Clipboard.SetText(marketData.CurrentCell.Value.ToString());
+            MessageBox.Show("复制成功","提示");
         }
     }
 }
