@@ -131,7 +131,7 @@ namespace WindowsFormsApp3
                     v.Add(rero);
                     v.Add(start);
                     v.Add(end);
-                    v.Add("/w " + name + " Hello");
+                    v.Add("/w " + name + " Hi!");
                     table.Rows.Add(l.Cast<object>().ToArray());
                     table.Rows.Add(v.Cast<object>().ToArray());
                     market.Text = "市场数据";
