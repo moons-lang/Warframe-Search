@@ -40,20 +40,21 @@
             this.info = new System.Windows.Forms.Label();
             this.marketData = new System.Windows.Forms.DataGridView();
             this.clear = new System.Windows.Forms.Button();
+            this.point = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.officeDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.marketData)).BeginInit();
             this.SuspendLayout();
             // 
             // search
             // 
-            this.search.Location = new System.Drawing.Point(107, 10);
+            this.search.Location = new System.Drawing.Point(130, 26);
             this.search.Name = "search";
             this.search.Size = new System.Drawing.Size(361, 21);
             this.search.TabIndex = 0;
             // 
             // searchButton
             // 
-            this.searchButton.Location = new System.Drawing.Point(504, 10);
+            this.searchButton.Location = new System.Drawing.Point(519, 26);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(127, 23);
             this.searchButton.TabIndex = 1;
@@ -69,7 +70,7 @@
             "xbox",
             "ps4",
             "switch"});
-            this.platform.Location = new System.Drawing.Point(164, 37);
+            this.platform.Location = new System.Drawing.Point(187, 53);
             this.platform.Name = "platform";
             this.platform.Size = new System.Drawing.Size(91, 20);
             this.platform.TabIndex = 2;
@@ -87,7 +88,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(105, 40);
+            this.label1.Location = new System.Drawing.Point(128, 56);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 4;
@@ -125,7 +126,7 @@
             // 
             this.info.AutoSize = true;
             this.info.ForeColor = System.Drawing.Color.Red;
-            this.info.Location = new System.Drawing.Point(270, 40);
+            this.info.Location = new System.Drawing.Point(300, 56);
             this.info.Name = "info";
             this.info.Size = new System.Drawing.Size(0, 12);
             this.info.TabIndex = 8;
@@ -153,12 +154,22 @@
             this.clear.UseVisualStyleBackColor = true;
             this.clear.Click += new System.EventHandler(this.clear_Click);
             // 
+            // point
+            // 
+            this.point.AutoSize = true;
+            this.point.ForeColor = System.Drawing.Color.DarkOrange;
+            this.point.Location = new System.Drawing.Point(128, 405);
+            this.point.Name = "point";
+            this.point.Size = new System.Drawing.Size(0, 12);
+            this.point.TabIndex = 12;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.point);
             this.Controls.Add(this.clear);
             this.Controls.Add(this.marketData);
             this.Controls.Add(this.info);
@@ -194,6 +205,7 @@
         private System.Windows.Forms.Label info;
         private System.Windows.Forms.DataGridView marketData;
         private System.Windows.Forms.Button clear;
+        private System.Windows.Forms.Label point;
     }
 }
 

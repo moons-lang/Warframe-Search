@@ -25,6 +25,7 @@ namespace WindowsFormsApp3
             this.MinimizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.platform.SelectedIndex = 0;
+            this.point.Text = "输入想要查找的紫卡并点击搜索";
             this.search.Text = "沙皇";
         }
 
@@ -56,6 +57,7 @@ namespace WindowsFormsApp3
                     info.Text = "搜索中 请稍侯";
                     getOfficialData();
                     getMarketData();
+                    point.Text = string.Empty;
                 }
                 else 
                 {
