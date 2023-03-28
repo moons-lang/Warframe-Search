@@ -115,6 +115,7 @@
             // officeDataGrid
             // 
             this.officeDataGrid.BackgroundColor = System.Drawing.SystemColors.Menu;
+            this.officeDataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.officeDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.officeDataGrid.Location = new System.Drawing.Point(73, 100);
             this.officeDataGrid.Name = "officeDataGrid";
@@ -134,6 +135,7 @@
             // marketData
             // 
             this.marketData.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.marketData.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.marketData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.marketData.Location = new System.Drawing.Point(73, 211);
             this.marketData.Name = "marketData";
