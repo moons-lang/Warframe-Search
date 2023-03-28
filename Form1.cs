@@ -13,7 +13,6 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsFormsApp3.VO;
 
 namespace WindowsFormsApp3
 {
@@ -35,7 +34,9 @@ namespace WindowsFormsApp3
             }
             else {
                 info.Text = null;
-                SQLiteHelper war = new SQLiteHelper(Config.SQLLITE_PATH);
+                string exepath = Application.ExecutablePath;
+                string exedic = Path.GetDirectoryName(exepath);
+                SQLiteHelper war = new SQLiteHelper(exedic+"\\"+Config.SQLLITE_PATH);
                 StringBuilder selsb = new StringBuilder();
                 selsb.Append("SELECT ename FROM rivenName WHERE cname=");
                 selsb.Append("'");
@@ -67,7 +68,9 @@ namespace WindowsFormsApp3
             string resp = HttpUitls.Get(HttpUitls.splicParam(url, hashtable), webHeader);
             if (resp != null)
             {
-                SQLiteHelper war = new SQLiteHelper(Config.SQLLITE_PATH);
+                string exepath = Application.ExecutablePath;
+                string exedic = Path.GetDirectoryName(exepath);
+                SQLiteHelper war = new SQLiteHelper(exedic + "\\" + Config.SQLLITE_PATH);
                 JObject jsonchat = JObject.Parse(resp);
                 IList<JToken> tokens = jsonchat["payload"]["auctions"].Children().ToList();
                 DataTable table = new DataTable();

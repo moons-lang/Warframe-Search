@@ -3,6 +3,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SQLite;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -16,7 +18,9 @@ namespace WindowsFormsApp3
       //查询英文名称
       public static string selEName(string chineseName) 
        {
-            SQLiteHelper war = new SQLiteHelper(Config.SQLLITE_PATH);
+            string exepath = Application.ExecutablePath;
+            string exedic = Path.GetDirectoryName(exepath);
+            SQLiteHelper war = new SQLiteHelper(exedic + "\\" + Config.SQLLITE_PATH);
             StringBuilder selsb = new StringBuilder();
             selsb.Append("SELECT ename FROM rivenName WHERE cname=");
             selsb.Append("'");
@@ -35,7 +39,6 @@ namespace WindowsFormsApp3
 
         // 获取最新数据并更新表
         public static void updataData() {
-            int val = 0;
             string nameUrl = Config.RIVEN_NAME;
             string attUrl = Config.RIVEN_ATTRIBUTES;
             WebHeaderCollection webHeader = new WebHeaderCollection();
@@ -44,7 +47,9 @@ namespace WindowsFormsApp3
             //更新名称表
             if (nameres != null)
             {
-                SQLiteHelper war = new SQLiteHelper(Config.SQLLITE_PATH);
+                string exepath = Application.ExecutablePath;
+                string exedic = Path.GetDirectoryName(exepath);
+                SQLiteHelper war = new SQLiteHelper(exedic + "\\" + Config.SQLLITE_PATH);
                 JObject jsonchat = JObject.Parse(nameres);
                 IList<JToken> tokens = jsonchat["payload"]["items"].Children().ToList();
                 foreach (var item in tokens)
@@ -81,7 +86,9 @@ namespace WindowsFormsApp3
             string attres = HttpUitls.Get(attUrl,webHeader);
             if (attres != null)
             {
-                SQLiteHelper war = new SQLiteHelper(Config.SQLLITE_PATH);
+                string exepath = Application.ExecutablePath;
+                string exedic = Path.GetDirectoryName(exepath);
+                SQLiteHelper war = new SQLiteHelper(exedic + "\\" + Config.SQLLITE_PATH);
                 JObject jsonchat = JObject.Parse(attres);
                 IList<JToken> tokens = jsonchat["payload"]["attributes"].Children().ToList();
                 foreach (var item in tokens)
