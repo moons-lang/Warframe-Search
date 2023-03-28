@@ -84,17 +84,27 @@ namespace WindowsFormsApp3
                 JObject jsonchat = JObject.Parse(resp);
                 IList<JToken> tokens = jsonchat["payload"]["auctions"].Children().ToList();
                 DataTable table = new DataTable();
-                table.Columns.Add("属性1");
-                table.Columns.Add("属性2");
-                table.Columns.Add("属性3");
-                table.Columns.Add("属性4");
-                table.Columns.Add("属性5");
+                table.Columns.Add("词条1");
+                table.Columns.Add("词条2");
+                table.Columns.Add("词条3");
+                table.Columns.Add("词条4");
+                table.Columns.Add("极性");
+                table.Columns.Add("紫卡等级");
+                table.Columns.Add("洗点次数");
+                table.Columns.Add("起拍价");
+                table.Columns.Add("买断价");
+                table.Columns.Add("卖家");
                 foreach (var auctions in tokens)
                 {
                     List<string> l = new List<string>(5);
                     List<string> v = new List<string>(5);
                     IList<JToken> attributes = auctions["item"]["attributes"].Children().ToList();
                     string name = auctions["owner"]["ingame_name"].ToString();
+                    string polarity = auctions["item"]["polarity"].ToString();
+                    string rank = auctions["item"]["mod_rank"].ToString();
+                    string rero = auctions["item"]["re_rolls"].ToString();
+                    string start = auctions["starting_price"].ToString();
+                    string end = auctions["buyout_price"].ToString();
                     foreach (var item in attributes)
                     {
                         string attr = item["url_name"].ToString();
@@ -117,10 +127,17 @@ namespace WindowsFormsApp3
                     {
                         v.Add("");
                     }
+                    v.Add(polarity);
+                    v.Add(rank);
+                    v.Add(rero);
+                    v.Add(start);
+                    v.Add(end);
                     v.Add("/w " + name + " Hello");
                     table.Rows.Add(l.Cast<object>().ToArray());
                     table.Rows.Add(v.Cast<object>().ToArray());
                     market.Text = "市场数据";
+                    marketData.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    marketData.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     marketData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                     marketData.RowHeadersVisible = false;
                     marketData.AllowUserToAddRows = false;
@@ -176,6 +193,8 @@ namespace WindowsFormsApp3
                     officeDataGrid.RowsDefaultCellStyle.BackColor = Color.Gold;
                     officeDataGrid.AlternatingRowsDefaultCellStyle.BackColor = Color.DeepSkyBlue;
                     officeDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    officeDataGrid.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    officeDataGrid.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     officeDataGrid.RowHeadersVisible = false;
                     officeDataGrid.AllowUserToAddRows = false;
                     office.Text = "官方数据";
@@ -225,12 +244,6 @@ namespace WindowsFormsApp3
         private void upendata_Click(object sender, EventArgs e)
         {
             CtoE.updataData();
-        }
-
-
-        private void office_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void clear_Click(object sender, EventArgs e)

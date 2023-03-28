@@ -80,7 +80,6 @@ namespace WindowsFormsApp3
                         war.ExecuteNonQuery(inssb.ToString());
                     }
                 }
-                MessageBox.Show("更新完成","信息");
             }
             //更新属性表
             string attres = HttpUitls.Get(attUrl,webHeader);
@@ -119,8 +118,8 @@ namespace WindowsFormsApp3
                         war.ExecuteNonQuery(inssb.ToString());
                     }
                 }
-                MessageBox.Show("更新完成", "信息");
             }
+            MessageBox.Show("更新完成", "提示");
         }
     }
 }

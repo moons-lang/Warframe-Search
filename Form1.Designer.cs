@@ -47,14 +47,14 @@
             // 
             // search
             // 
-            this.search.Location = new System.Drawing.Point(130, 26);
+            this.search.Location = new System.Drawing.Point(237, 26);
             this.search.Name = "search";
             this.search.Size = new System.Drawing.Size(361, 21);
             this.search.TabIndex = 0;
             // 
             // searchButton
             // 
-            this.searchButton.Location = new System.Drawing.Point(519, 26);
+            this.searchButton.Location = new System.Drawing.Point(628, 26);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(127, 23);
             this.searchButton.TabIndex = 1;
@@ -70,14 +70,14 @@
             "xbox",
             "ps4",
             "switch"});
-            this.platform.Location = new System.Drawing.Point(187, 53);
+            this.platform.Location = new System.Drawing.Point(293, 53);
             this.platform.Name = "platform";
             this.platform.Size = new System.Drawing.Size(91, 20);
             this.platform.TabIndex = 2;
             // 
             // upendata
             // 
-            this.upendata.Location = new System.Drawing.Point(544, 400);
+            this.upendata.Location = new System.Drawing.Point(708, 470);
             this.upendata.Name = "upendata";
             this.upendata.Size = new System.Drawing.Size(102, 24);
             this.upendata.TabIndex = 3;
@@ -88,7 +88,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(128, 56);
+            this.label1.Location = new System.Drawing.Point(234, 56);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 4;
@@ -97,16 +97,15 @@
             // office
             // 
             this.office.AutoSize = true;
-            this.office.Location = new System.Drawing.Point(71, 89);
+            this.office.Location = new System.Drawing.Point(71, 76);
             this.office.Name = "office";
             this.office.Size = new System.Drawing.Size(0, 12);
             this.office.TabIndex = 5;
-            this.office.Click += new System.EventHandler(this.office_Click);
             // 
             // market
             // 
             this.market.AutoSize = true;
-            this.market.Location = new System.Drawing.Point(71, 222);
+            this.market.Location = new System.Drawing.Point(71, 187);
             this.market.Name = "market";
             this.market.Size = new System.Drawing.Size(0, 12);
             this.market.TabIndex = 6;
@@ -116,17 +115,17 @@
             this.officeDataGrid.BackgroundColor = System.Drawing.SystemColors.Menu;
             this.officeDataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.officeDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.officeDataGrid.Location = new System.Drawing.Point(73, 115);
+            this.officeDataGrid.Location = new System.Drawing.Point(73, 100);
             this.officeDataGrid.Name = "officeDataGrid";
             this.officeDataGrid.RowTemplate.Height = 23;
-            this.officeDataGrid.Size = new System.Drawing.Size(679, 92);
+            this.officeDataGrid.Size = new System.Drawing.Size(843, 68);
             this.officeDataGrid.TabIndex = 7;
             // 
             // info
             // 
             this.info.AutoSize = true;
             this.info.ForeColor = System.Drawing.Color.Red;
-            this.info.Location = new System.Drawing.Point(300, 56);
+            this.info.Location = new System.Drawing.Point(390, 56);
             this.info.Name = "info";
             this.info.Size = new System.Drawing.Size(0, 12);
             this.info.TabIndex = 8;
@@ -136,17 +135,16 @@
             this.marketData.BackgroundColor = System.Drawing.SystemColors.Control;
             this.marketData.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.marketData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.marketData.ColumnHeadersVisible = false;
-            this.marketData.Location = new System.Drawing.Point(73, 246);
+            this.marketData.Location = new System.Drawing.Point(73, 211);
             this.marketData.Name = "marketData";
             this.marketData.RowTemplate.Height = 23;
-            this.marketData.Size = new System.Drawing.Size(679, 148);
+            this.marketData.Size = new System.Drawing.Size(843, 253);
             this.marketData.TabIndex = 10;
             this.marketData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.marketData_CellContentClick);
             // 
             // clear
             // 
-            this.clear.Location = new System.Drawing.Point(652, 400);
+            this.clear.Location = new System.Drawing.Point(816, 471);
             this.clear.Name = "clear";
             this.clear.Size = new System.Drawing.Size(100, 23);
             this.clear.TabIndex = 11;
@@ -158,7 +156,7 @@
             // 
             this.point.AutoSize = true;
             this.point.ForeColor = System.Drawing.Color.DarkOrange;
-            this.point.Location = new System.Drawing.Point(128, 405);
+            this.point.Location = new System.Drawing.Point(71, 476);
             this.point.Name = "point";
             this.point.Size = new System.Drawing.Size(0, 12);
             this.point.TabIndex = 12;
@@ -168,7 +166,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(984, 516);
             this.Controls.Add(this.point);
             this.Controls.Add(this.clear);
             this.Controls.Add(this.marketData);
