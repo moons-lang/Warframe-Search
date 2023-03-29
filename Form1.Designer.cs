@@ -43,24 +43,26 @@
             this.point = new System.Windows.Forms.Label();
             this.sort = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.languagelabe = new System.Windows.Forms.Label();
+            this.language = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.officeDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.marketData)).BeginInit();
             this.SuspendLayout();
             // 
             // search
             // 
-            this.search.Location = new System.Drawing.Point(237, 26);
+            this.search.Location = new System.Drawing.Point(217, 26);
             this.search.Name = "search";
-            this.search.Size = new System.Drawing.Size(361, 21);
+            this.search.Size = new System.Drawing.Size(460, 21);
             this.search.TabIndex = 0;
             // 
             // searchButton
             // 
-            this.searchButton.Location = new System.Drawing.Point(628, 26);
+            this.searchButton.Location = new System.Drawing.Point(683, 26);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(127, 23);
             this.searchButton.TabIndex = 1;
-            this.searchButton.Text = "搜索";
+            this.searchButton.Text = "search";
             this.searchButton.UseVisualStyleBackColor = true;
             this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
@@ -72,7 +74,7 @@
             "xbox",
             "ps4",
             "switch"});
-            this.platform.Location = new System.Drawing.Point(293, 53);
+            this.platform.Location = new System.Drawing.Point(430, 53);
             this.platform.Name = "platform";
             this.platform.Size = new System.Drawing.Size(91, 20);
             this.platform.TabIndex = 2;
@@ -83,18 +85,18 @@
             this.upendata.Name = "upendata";
             this.upendata.Size = new System.Drawing.Size(102, 24);
             this.upendata.TabIndex = 3;
-            this.upendata.Text = "更新数据";
+            this.upendata.Text = "updata";
             this.upendata.UseVisualStyleBackColor = true;
             this.upendata.Click += new System.EventHandler(this.upendata_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(234, 56);
+            this.label1.Location = new System.Drawing.Point(371, 56);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 4;
-            this.label1.Text = "选择平台";
+            this.label1.Text = "platform";
             // 
             // office
             // 
@@ -150,7 +152,7 @@
             this.clear.Name = "clear";
             this.clear.Size = new System.Drawing.Size(100, 23);
             this.clear.TabIndex = 11;
-            this.clear.Text = "清除数据";
+            this.clear.Text = "cleardata";
             this.clear.UseVisualStyleBackColor = true;
             this.clear.Click += new System.EventHandler(this.clear_Click);
             // 
@@ -167,10 +169,10 @@
             // 
             this.sort.FormattingEnabled = true;
             this.sort.Items.AddRange(new object[] {
-            "默认排序",
-            "价格升序",
-            "价格降序"});
-            this.sort.Location = new System.Drawing.Point(468, 53);
+            "default",
+            "price asc",
+            "price desc"});
+            this.sort.Location = new System.Drawing.Point(586, 53);
             this.sort.Name = "sort";
             this.sort.Size = new System.Drawing.Size(91, 20);
             this.sort.TabIndex = 13;
@@ -178,11 +180,40 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(409, 56);
+            this.label2.Location = new System.Drawing.Point(551, 56);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.Size = new System.Drawing.Size(29, 12);
             this.label2.TabIndex = 14;
-            this.label2.Text = "排序方式";
+            this.label2.Text = "sort";
+            // 
+            // languagelabe
+            // 
+            this.languagelabe.AutoSize = true;
+            this.languagelabe.Location = new System.Drawing.Point(215, 56);
+            this.languagelabe.Name = "languagelabe";
+            this.languagelabe.Size = new System.Drawing.Size(53, 12);
+            this.languagelabe.TabIndex = 17;
+            this.languagelabe.Text = "language";
+            // 
+            // language
+            // 
+            this.language.FormattingEnabled = true;
+            this.language.Items.AddRange(new object[] {
+            "简体中文",
+            "繁體中文",
+            "English",
+            "Русский",
+            "Polski",
+            "한국어",
+            "Deutsch",
+            "Français",
+            "Português",
+            "Español",
+            "Svenska"});
+            this.language.Location = new System.Drawing.Point(274, 53);
+            this.language.Name = "language";
+            this.language.Size = new System.Drawing.Size(91, 20);
+            this.language.TabIndex = 16;
             // 
             // Form1
             // 
@@ -190,6 +221,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(984, 516);
+            this.Controls.Add(this.languagelabe);
+            this.Controls.Add(this.language);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.sort);
             this.Controls.Add(this.point);
@@ -231,6 +264,8 @@
         private System.Windows.Forms.Label point;
         private System.Windows.Forms.ComboBox sort;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label languagelabe;
+        private System.Windows.Forms.ComboBox language;
     }
 }
 

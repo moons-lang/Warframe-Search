@@ -16,10 +16,10 @@ namespace WindowsFormsApp3
         /// <summary>
         /// 构造函数
         /// </summary>
-        /// <param name="filename">数据库文件名</param>
-        public SQLiteHelper(string filename = null)
+        /// <param name="filurlname">数据库文件名</param>
+        public SQLiteHelper(string filurlname = null)
         {
-            DataSource = filename;
+            DataSource = filurlname;
         }
 
         /// <summary>

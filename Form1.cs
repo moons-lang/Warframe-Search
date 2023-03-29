@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -13,6 +15,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WarframeSearch.Tools;
 
 namespace WindowsFormsApp3
 {
@@ -27,7 +30,8 @@ namespace WindowsFormsApp3
             this.platform.SelectedIndex = 0;
             this.point.Text = "输入想要查找的紫卡并点击搜索";
             this.search.Text = "沙皇";
-            this.sort.Text = "默认排序";
+            this.sort.Text = "default";
+            this.language.Text = "简体中文";
         }
 
         private void searchButton_Click(object sender, EventArgs e)
@@ -42,16 +46,22 @@ namespace WindowsFormsApp3
                 info.Text = "请输入查询值";
 
             }
-            else {
-                string exepath = Application.ExecutablePath;
-                string exedic = Path.GetDirectoryName(exepath);
-                SQLiteHelper war = new SQLiteHelper(exedic+"\\"+Config.SQLLITE_PATH);
-                StringBuilder selsb = new StringBuilder();
-                selsb.Append("SELECT ename FROM rivenName WHERE cname=");
-                selsb.Append("'");
-                selsb.Append(search.Text);
-                selsb.Append("'");
-                DataRow row = war.ExecuteDataRow(selsb.ToString());
+            else
+            {
+                string lang = StatementClump.SelectLanguage(3, language.Text);
+                string lan = StatementClump.SelectLanguage(2, lang);
+                DataRow row;
+                if (language.Text.Equals("繁體中文") || language.Text.Equals("简体中文") || language.Text.Equals("한국어") || language.Text.Equals("Русский"))
+                {
+                    row = StatementClump.SelectRow(language.Text, "urlname", "rivenName", lan, search.Text);
+                }
+                else
+                {
+                    TextInfo myTI = new CultureInfo("en-US", false).TextInfo;
+                    string s = myTI.ToTitleCase(search.Text);
+                    row = StatementClump.SelectRow(language.Text, "urlname", "rivenName", lan, s);
+                }
+
                 if (row != null)
                 {
                     info.Text = "搜索中 请稍侯";
@@ -59,10 +69,11 @@ namespace WindowsFormsApp3
                     getMarketData();
                     point.Text = string.Empty;
                 }
-                else 
+                else
                 {
-                    info.Text = "无此武器 请更新数据或检查输入";
+                    info.Text = "无结果 请更新数据，检查输入或检查语言设置";
                 }
+
 
             }
 
@@ -74,21 +85,19 @@ namespace WindowsFormsApp3
             WebHeaderCollection webHeader = new WebHeaderCollection();
             webHeader.Add("platform", platform.Text);
             Hashtable hashtable = new Hashtable();
-            switch (sort.Text) {
-                case "价格升序":
+            switch (sort.Text)
+            {
+                case "price asc":
                     hashtable.Add("sort_by", "price_asc");
                     break;
-                case "价格降序":
+                case "price desc":
                     hashtable.Add("sort_by", "price_desc");
                     break;
             }
-            hashtable.Add("weapon_url_name", CtoE.selEName(search.Text));
+            hashtable.Add("weapon_url_name", CtoE.selurlname(search.Text, language.Text));
             string resp = HttpUitls.Get(HttpUitls.splicParam(url, hashtable), webHeader);
             if (resp != null)
             {
-                string exepath = Application.ExecutablePath;
-                string exedic = Path.GetDirectoryName(exepath);
-                SQLiteHelper war = new SQLiteHelper(exedic + "\\" + Config.SQLLITE_PATH);
                 JObject jsonchat = JObject.Parse(resp);
                 IList<JToken> tokens = jsonchat["payload"]["auctions"].Children().ToList();
                 DataTable table = new DataTable();
@@ -119,12 +128,9 @@ namespace WindowsFormsApp3
                     {
                         string attr = item["url_name"].ToString();
                         string value = item["value"].ToString();
-                        StringBuilder selsb = new StringBuilder();
-                        selsb.Append("SELECT attcname FROM attName WHERE attename=");
-                        selsb.Append("'");
-                        selsb.Append(attr);
-                        selsb.Append("'");
-                        DataRow dr = war.ExecuteDataRow(selsb.ToString());
+                        string lang = StatementClump.SelectLanguage(3, language.Text);
+                        string lan = StatementClump.SelectLanguage(1, lang);
+                        DataRow dr = StatementClump.SelectRow(language.Text, lan, "attName", "atturlname", attr);
                         l.Add(dr.ItemArray[0].ToString());
                         v.Add(value);
                     }
@@ -142,22 +148,23 @@ namespace WindowsFormsApp3
                     v.Add(rero);
                     v.Add(start);
                     v.Add(end);
-                    if (status.Equals("offline"))
-                    {
-                        v.Add("离线");
-                    }
-                    else if ((status.Equals("ingame")))
-                    {
-                        v.Add("游戏中");
-                    }
-                    else 
-                    {
-                        v.Add("在线");
-                    }
+                    v.Add(status);
+                    //if (status.Equals("offline"))
+                    //{
+                    //    v.Add("离线");
+                    //}
+                    //else if ((status.Equals("ingame")))
+                    //{
+                    //    v.Add("游戏中");
+                    //}
+                    //else 
+                    //{
+                    //    v.Add("在线");
+                    //}
                     v.Add("/w " + name + " Hi!");
                     table.Rows.Add(l.Cast<object>().ToArray());
                     table.Rows.Add(v.Cast<object>().ToArray());
-                    market.Text = "市场数据";
+                    market.Text = "market data";
                     marketData.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     marketData.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     marketData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -166,10 +173,14 @@ namespace WindowsFormsApp3
                     marketData.RowsDefaultCellStyle.BackColor = Color.Gold;
                     marketData.AlternatingRowsDefaultCellStyle.BackColor = Color.DeepSkyBlue;
                     marketData.DataSource = table;
-                    info.Text = "单击复制表格内容";
+                    info.Text = "Click to copy table content";
                 }
-                return null;
             }
+            else
+            {
+                market.Text = "no data";
+            }
+
             return null;
         }
 
@@ -191,11 +202,11 @@ namespace WindowsFormsApp3
                     newpl = "pc";
                     break;
             }
-            string ename = CtoE.selEName(search.Text);
+            string urlname = CtoE.selurlname(search.Text, language.Text);
             string url;
-            if (ename != null)
+            if (urlname != null)
             {
-                url = Config.OFFICIAL_RIVEN_PRICE + newpl + "/rivens/search/" + ename.Replace("_", "%20");
+                url = Config.OFFICIAL_RIVEN_PRICE + newpl + "/rivens/search/" + urlname.Replace("_", "%20");
                 if (search.Text.Equals("暗黑分合剑"))
                 {
                     url = Config.OFFICIAL_RIVEN_PRICE + newpl + "/rivens/search/" + "dark%20split-sword";
@@ -204,10 +215,11 @@ namespace WindowsFormsApp3
                 if (resp != null && !resp.Equals("{}"))
                 {
                     //截取json
-                    string json = resp.ToString().Trim();
+                    JObject jsonst = JObject.Parse(resp);
+                    JToken a = jsonst.Last;
+                    string json = a.ToString().Trim();
                     string midchat = json.Remove(0, json.IndexOf(":") + 1);
-                    string finchat = midchat.Remove(midchat.Length - 1, 1);
-                    JObject jsonchat = JObject.Parse(finchat);
+                    JObject jsonchat = JObject.Parse(midchat);
                     //清除所有行
                     officeDataGrid.DataSource = null;
                     //设置左上第一格
@@ -219,7 +231,7 @@ namespace WindowsFormsApp3
                     officeDataGrid.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     officeDataGrid.RowHeadersVisible = false;
                     officeDataGrid.AllowUserToAddRows = false;
-                    office.Text = "官方数据";
+                    office.Text = "official data";
                     DataTable table = new DataTable();
                     table.Columns.Add(search.Text);
                     table.Columns.Add("平均数");
@@ -254,7 +266,7 @@ namespace WindowsFormsApp3
                 }
                 else
                 {
-                    info.Text = "查询失败";
+                    office.Text = "no data";
                 }
             }
             else
@@ -265,14 +277,15 @@ namespace WindowsFormsApp3
 
         private void upendata_Click(object sender, EventArgs e)
         {
-            CtoE.updataData();
+            string lang = StatementClump.SelectLanguage(3, language.Text);
+            CtoE.updataData(lang);
         }
 
         private void clear_Click(object sender, EventArgs e)
         {
             info.Text = null;
             office.Text = string.Empty;
-            officeDataGrid.DataSource = null;  
+            officeDataGrid.DataSource = null;
             market.Text = string.Empty;
             marketData.DataSource = null;
         }
@@ -280,7 +293,7 @@ namespace WindowsFormsApp3
         private void marketData_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             Clipboard.SetText(marketData.CurrentCell.Value.ToString());
-            MessageBox.Show("复制成功","提示");
-        }
+            MessageBox.Show("复制成功", "提示");
         }
     }
+ }
