@@ -170,8 +170,8 @@ namespace WindowsFormsApp3
                     marketData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                     marketData.RowHeadersVisible = false;
                     marketData.AllowUserToAddRows = false;
-                    marketData.RowsDefaultCellStyle.BackColor = Color.Gold;
-                    marketData.AlternatingRowsDefaultCellStyle.BackColor = Color.DeepSkyBlue;
+                    marketData.RowsDefaultCellStyle.BackColor = Color.DeepSkyBlue;
+                    marketData.AlternatingRowsDefaultCellStyle.BackColor = Color.Gold;
                     marketData.DataSource = table;
                     info.Text = "Click to copy table content";
                 }
@@ -224,8 +224,8 @@ namespace WindowsFormsApp3
                     officeDataGrid.DataSource = null;
                     //设置左上第一格
                     officeDataGrid.TopLeftHeaderCell.Value = search.Text;
-                    officeDataGrid.RowsDefaultCellStyle.BackColor = Color.Gold;
-                    officeDataGrid.AlternatingRowsDefaultCellStyle.BackColor = Color.DeepSkyBlue;
+                    officeDataGrid.RowsDefaultCellStyle.BackColor = Color.DeepSkyBlue;
+                    officeDataGrid.AlternatingRowsDefaultCellStyle.BackColor = Color.Gold;
                     officeDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                     officeDataGrid.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     officeDataGrid.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
