@@ -61,7 +61,7 @@ namespace WindowsFormsApp3
                     // 查询是否已写入数据
                     string urlName = item["url_name"].ToString();
                     string itemName = item["item_name"].ToString();
-                    DataTable dt =  StatementClump.SelectTable("cname", "rivenName", "urlname", urlName);
+                    DataTable dt =  StatementClump.SelectTable(1,"cname", "rivenName", "urlname", urlName,null);
                     //无此数据 则新增
                     if (dt.Rows.Count == 0)
                     {
@@ -95,7 +95,7 @@ namespace WindowsFormsApp3
                     // 查询是否已写入数据
                     string urlName = item["url_name"].ToString();
                     string effect = item["effect"].ToString();
-                    DataTable dt = StatementClump.SelectTable("attcname", "attName", "atturlname", urlName);
+                    DataTable dt = StatementClump.SelectTable(1, "attcname", "attName", "atturlname", urlName,null);
                     // 无此数据 则新增
                     if (dt.Rows.Count == 0)
                     {

@@ -16,7 +16,8 @@ namespace WarframeSearch.Tools
 {
     internal class StatementClump
     {
-        public static DataTable SelectTable(string selName,string tablurlname,string term,string selterm)
+        // mod 1 确定条件查询 2 like查询
+        public static DataTable SelectTable(int mod,string selName,string tablurlname,string term,string selterm,string like)
         {
             string exepath = Application.ExecutablePath;
             string exedic = Path.GetDirectoryName(exepath);
@@ -26,13 +27,22 @@ namespace WarframeSearch.Tools
             selsb.Append(selName);
             selsb.Append(" FROM ");
             selsb.Append(tablurlname);
-            if (term != null && selterm != null && !term.Equals("") && !selterm.Equals(""))
+            if (mod == 1 && term != null && selterm != null && !term.Equals("") && !selterm.Equals(""))
             {
                 selsb.Append(" WHERE ");
                 selsb.Append(term);
                 selsb.Append("=");
                 selsb.Append("'");
                 selsb.Append(selterm);
+                selsb.Append("'");
+            } else if (mod == 2 && term != null && selterm != null && !term.Equals("") && !selterm.Equals("")) 
+            {
+                selsb.Append(" WHERE ");
+                selsb.Append(term);
+                selsb.Append(" like ");
+                selsb.Append("'");
+                selsb.Append(selterm);
+                selsb.Append(like);
                 selsb.Append("'");
             }
             return war.ExecuteDataTable(selsb.ToString());

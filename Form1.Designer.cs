@@ -45,16 +45,20 @@
             this.label2 = new System.Windows.Forms.Label();
             this.languagelabe = new System.Windows.Forms.Label();
             this.language = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.officeDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.marketData)).BeginInit();
             this.SuspendLayout();
             // 
             // search
             // 
+            this.search.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.search.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.search.Location = new System.Drawing.Point(217, 26);
             this.search.Name = "search";
             this.search.Size = new System.Drawing.Size(460, 21);
             this.search.TabIndex = 0;
+            this.search.TextChanged += new System.EventHandler(this.search_TextChanged);
             // 
             // searchButton
             // 
@@ -215,12 +219,23 @@
             this.language.Size = new System.Drawing.Size(91, 20);
             this.language.TabIndex = 16;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(325, 10);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(0, 12);
+            this.label3.TabIndex = 18;
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(984, 516);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.languagelabe);
             this.Controls.Add(this.language);
             this.Controls.Add(this.label2);
@@ -266,6 +281,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label languagelabe;
         private System.Windows.Forms.ComboBox language;
+        private System.Windows.Forms.Label label3;
     }
 }
 

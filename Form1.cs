@@ -16,6 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WarframeSearch.Tools;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WindowsFormsApp3
 {
@@ -32,6 +33,8 @@ namespace WindowsFormsApp3
             this.search.Text = "沙皇";
             this.sort.Text = "default";
             this.language.Text = "简体中文";
+            this.label3.Text = "请用对应的语言查询 否则会无结果";
+
         }
 
         private void searchButton_Click(object sender, EventArgs e)
@@ -61,7 +64,6 @@ namespace WindowsFormsApp3
                     string s = myTI.ToTitleCase(search.Text);
                     row = StatementClump.SelectRow( "urlname", "rivenName", lan, s);
                 }
-
                 if (row != null)
                 {
                     info.Text = "搜索中 请稍侯";
@@ -294,6 +296,26 @@ namespace WindowsFormsApp3
         {
             Clipboard.SetText(marketData.CurrentCell.Value.ToString());
             MessageBox.Show("复制成功", "提示");
+        }
+
+        private void search_TextChanged(object sender, EventArgs e)
+        {
+            var source = new AutoCompleteStringCollection();
+            string lang = StatementClump.SelectLanguage(3, language.Text);
+            string lan = StatementClump.SelectLanguage(2, lang);
+            DataTable dt = StatementClump.SelectTable(2, lan, "rivenName", lan, search.Text, "%");
+            foreach (DataRow item in dt.Rows)
+            {
+                source.Add(item[0].ToString());
+            }
+            search.AutoCompleteCustomSource = source;
+            search.AutoCompleteMode = AutoCompleteMode.Suggest;
+            search.AutoCompleteSource = AutoCompleteSource.CustomSource;
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            label3.Text = string.Empty;
         }
     }
  }
