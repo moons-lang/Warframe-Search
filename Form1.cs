@@ -53,13 +53,13 @@ namespace WindowsFormsApp3
                 DataRow row;
                 if (language.Text.Equals("繁體中文") || language.Text.Equals("简体中文") || language.Text.Equals("한국어") || language.Text.Equals("Русский"))
                 {
-                    row = StatementClump.SelectRow(language.Text, "urlname", "rivenName", lan, search.Text);
+                    row = StatementClump.SelectRow( "urlname", "rivenName", lan, search.Text);
                 }
                 else
                 {
                     TextInfo myTI = new CultureInfo("en-US", false).TextInfo;
                     string s = myTI.ToTitleCase(search.Text);
-                    row = StatementClump.SelectRow(language.Text, "urlname", "rivenName", lan, s);
+                    row = StatementClump.SelectRow( "urlname", "rivenName", lan, s);
                 }
 
                 if (row != null)
@@ -130,7 +130,7 @@ namespace WindowsFormsApp3
                         string value = item["value"].ToString();
                         string lang = StatementClump.SelectLanguage(3, language.Text);
                         string lan = StatementClump.SelectLanguage(1, lang);
-                        DataRow dr = StatementClump.SelectRow(language.Text, lan, "attName", "atturlname", attr);
+                        DataRow dr = StatementClump.SelectRow( lan, "attName", "atturlname", attr);
                         l.Add(dr.ItemArray[0].ToString());
                         v.Add(value);
                     }

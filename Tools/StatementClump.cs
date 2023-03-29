@@ -26,16 +26,19 @@ namespace WarframeSearch.Tools
             selsb.Append(selName);
             selsb.Append(" FROM ");
             selsb.Append(tablurlname);
-            selsb.Append(" WHERE ");
-            selsb.Append(term);
-            selsb.Append("=");
-            selsb.Append("'");
-            selsb.Append(selterm);
-            selsb.Append("'");
+            if (term != null && selterm != null && !term.Equals("") && !selterm.Equals(""))
+            {
+                selsb.Append(" WHERE ");
+                selsb.Append(term);
+                selsb.Append("=");
+                selsb.Append("'");
+                selsb.Append(selterm);
+                selsb.Append("'");
+            }
             return war.ExecuteDataTable(selsb.ToString());
         }
 
-        public static DataRow SelectRow(string language, string selName, string tablurlname, string term, string selterm)
+        public static DataRow SelectRow(string selName, string tablurlname, string term, string selterm)
         {
 
             
@@ -47,22 +50,15 @@ namespace WarframeSearch.Tools
             selsb.Append(selName);
             selsb.Append(" FROM ");
             selsb.Append(tablurlname);
-            selsb.Append(" WHERE ");
-            selsb.Append(term);
-            selsb.Append("=");
-            selsb.Append("'");
-            //if (language.Equals("繁體中文") || language.Equals("简体中文") || language.Equals("한국어") || language.Equals("Русский"))
-            //{
-            selsb.Append(selterm);
-            //}
-            //else
-            //{
-            //    TextInfo myTI = new CultureInfo("en-US", false).TextInfo;
-            //    string s = myTI.ToTitleCase(selterm);
-            //    string ns = s.Replace("_"," ");
-            //    selsb.Append(ns);
-            //}
-            selsb.Append("'");
+            if (term != null && selterm != null && !term.Equals("") && !selterm.Equals(""))
+            {
+                selsb.Append(" WHERE ");
+                selsb.Append(term);
+                selsb.Append("=");
+                selsb.Append("'");
+                selsb.Append(selterm);
+                selsb.Append("'");
+            }
             return war.ExecuteDataRow(selsb.ToString());
         }
 

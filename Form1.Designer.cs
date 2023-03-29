@@ -74,7 +74,7 @@
             "xbox",
             "ps4",
             "switch"});
-            this.platform.Location = new System.Drawing.Point(430, 53);
+            this.platform.Location = new System.Drawing.Point(443, 53);
             this.platform.Name = "platform";
             this.platform.Size = new System.Drawing.Size(91, 20);
             this.platform.TabIndex = 2;
@@ -92,7 +92,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(371, 56);
+            this.label1.Location = new System.Drawing.Point(384, 56);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 4;

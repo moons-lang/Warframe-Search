@@ -25,14 +25,14 @@ namespace WindowsFormsApp3
             DataRow row;
             if (language.Equals("繁體中文") || language.Equals("简体中文") || language.Equals("한국어") || language.Equals("Русский"))
             {
-                row = StatementClump.SelectRow(language, "urlname", "rivenName", lan, searchName);
+                row = StatementClump.SelectRow("urlname", "rivenName", lan, searchName);
             }
             else
             {
                 TextInfo myTI = new CultureInfo("en-US", false).TextInfo;
                 string s = myTI.ToTitleCase(searchName);
                 string ns = s.Replace("_"," ");
-                row = StatementClump.SelectRow(language, "urlname", "rivenName", lan, ns);
+                row = StatementClump.SelectRow("urlname", "rivenName", lan, ns);
             }
         
             if (row != null)
